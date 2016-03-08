@@ -6,8 +6,6 @@
 
 _entrypoint:
 
-#setting the video mode
-
 cli		
 
 movw	%cs, %ax
@@ -20,11 +18,14 @@ movw	%sp, %ss
 
 sti
 
-ret	
+print_char:
 
-movb	$0x02, %al	#setting the graphical mode to 80x25 (text)
-movb	$0x00, %ah	#code of function changing graphical mode
+movb $0x00, %bh   	# Page number
+movb $0x07, %bl   	# Text attribute (white)
+movb $0x23, %al      	# Print an 'A'
+movb $0x0e, %ah     	# Print char function of 10h
+int $0x10        	# Execute 10h
 
-int	$0x10		#calling the interrupt
+#jmp print_char
 
-
+ret
