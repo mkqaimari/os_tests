@@ -22,7 +22,7 @@ print_char:
 
 movb $0x00, %bh   	# Page number
 movb $0x07, %bl   	# Text attribute (white)
-movb $0x23, %al      	# Print an 'A'
+movb $0x30, %al      	# Print an 'A'
 movb $0x0e, %ah     	# Print char function of 10h
 int $0x10        	# Execute 10h
 
